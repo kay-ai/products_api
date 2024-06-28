@@ -13,6 +13,11 @@ Before you begin, ensure you have the following installed on your system:
 - MySQL or MariaDB (or another supported database)
 - Symfony CLI (optional but recommended for Symfony projects)
 
+install symfony with the following command
+```bash
+curl -sS https://get.symfony.com/cli/installer
+```
+
 ## Installation Steps
 
 1. **Clone the repository:**
