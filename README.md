@@ -1,5 +1,5 @@
 ```markdown
-# Symfony API Application Setup Guide
+# Gitstart Assessment API Application Setup Guide
 ```
 
 This guide will walk you through setting up and running a Symfony API application, including database seeding for testing purposes.
@@ -8,7 +8,7 @@ This guide will walk you through setting up and running a Symfony API applicatio
 
 Before you begin, ensure you have the following installed on your system:
 
-- PHP (>= 7.4 recommended)
+- PHP (>= 8.2 recommended)
 - Composer (Dependency Manager for PHP)
 - MySQL or MariaDB (or another supported database)
 - Symfony CLI (optional but recommended for Symfony projects)
@@ -77,12 +77,27 @@ Before you begin, ensure you have the following installed on your system:
 
    Use tools like Postman or curl to interact with the API endpoints.
 
+   Login to get a JWT token. The login endpoint takes email and password
+   
    ```bash
-     - `GET /api/products` - List all products.
-    - `POST /api/products` - Create a new product.
-    - `GET /api/products/{id}` - Get details of a single product.
-    - `PUT /api/products/{id}` - Update an existing product.
-    - `DELETE /api/products/{id}` - Delete a product.
+      - `POST /api/login` - Login.
+   ```
+   If you seeded your database correctly, you will have the following user data to login:
+
+   ```bash
+      {
+        "email": "admin@gitstart.com",
+        "password":"admin_password"
+      }
+   ```
+   Copy your JWT token and pass it as a bearer token in header to access the following routes
+   
+   ```bash
+      - `GET /api/products` - List all products.
+      - `POST /api/products` - Create a new product.
+      - `GET /api/products/{id}` - Get details of a single product.
+      - `PUT /api/products/{id}` - Update an existing product.
+      - `DELETE /api/products/{id}` - Delete a product.
    ```
 
 ## Running Tests
