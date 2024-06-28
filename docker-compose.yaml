@@ -1,0 +1,14 @@
+version: '3.8'
+ 
+services:
+    db:
+        image: mysql:5.7
+        environment:
+            - MYSQL_ROOT_PASSWORD=
+            - MYSQL_PASSWORD=
+            - MYSQL_DATABASE=products_api_db
+            - MYSQL_USER=root
+    web:
+        build: .
+        ports:
+            - 8080:80
