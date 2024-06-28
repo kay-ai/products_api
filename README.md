@@ -32,20 +32,14 @@ Before you begin, ensure you have the following installed on your system:
    ```
 
    Update `.env` with your database credentials.
-
-4. **Generate JWT Token:**
-
-   ```bash
-   php bin/console lexik:jwt:generate-keypair
-   ```
    
-5. **Create the Database:**
+4. **Create the Database:**
 
    ```bash
    php bin/console doctrine:database:create
    ```
 
-6. **Run Migrations:**
+5. **Run Migrations:**
 
    ```bash
    php bin/console doctrine:migrations:migrate
@@ -53,7 +47,7 @@ Before you begin, ensure you have the following installed on your system:
 
    This will create necessary database tables based on your entities.
 
-7. **Seed the Database (Optional):**
+6. **Seed the Database (Optional):**
 
    If you have seed data to populate the database for testing, create a seeder class or use fixtures:
 
@@ -65,7 +59,7 @@ Before you begin, ensure you have the following installed on your system:
 
 ## Running the Application
 
-8. **Start the Symfony Server:**
+7. **Start the Symfony Server:**
 
    ```bash
    symfony serve:start
@@ -73,7 +67,7 @@ Before you begin, ensure you have the following installed on your system:
 
    This will start a local server. By default, the application will be accessible at `http://localhost:8000`.
 
-9. **Accessing API Endpoints:**
+8. **Accessing API Endpoints:**
 
    Use tools like Postman or curl to interact with the API endpoints.
 
