@@ -35,4 +35,10 @@
 
     <extensions>
     </extensions>
+
+    <logging>
+        <log type="junit" target="var/logs/junit.xml"/>
+        <log type="testdox-text" target="var/logs/testdox.txt"/>
+        <log type="coverage-html" target="var/logs/coverage"/>
+    </logging>
 </phpunit>
