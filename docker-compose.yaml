@@ -1,14 +1,32 @@
 version: '3.8'
- 
+
 services:
-    db:
-        image: mysql:5.7
-        environment:
-            - MYSQL_ROOT_PASSWORD=
-            - MYSQL_PASSWORD=
-            - MYSQL_DATABASE=products_api_db
-            - MYSQL_USER=root
-    web:
-        build: .
-        ports:
-            - 8080:80
+  # Symfony application container
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env.docker
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+
+  # MySQL (or MariaDB) database container
+  db:
+    image: mariadb:latest
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    env_file:
+      - .env.docker
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
+    driver: local
