@@ -1,24 +1,30 @@
-FROM php:7.4-apache
+# Use the official Symfony image as a base
+FROM php:8.2-fpm
 
-RUN a2enmod rewrite
+# Set working directory
+WORKDIR /app
 
-RUN apt-get update \
-  && apt-get install -y libzip-dev git wget --no-install-recommends \
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# Install PHP extensions
+RUN docker-php-ext-install pdo pdo_mysql
 
-RUN docker-php-ext-install pdo mysqli pdo_mysql zip;
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-RUN wget https://getcomposer.org/download/2.0.9/composer.phar \
-    && mv composer.phar /usr/bin/composer && chmod +x /usr/bin/composer
+# Copy application code
+COPY . /app
 
-COPY docker/apache.conf /etc/apache2/sites-enabled/000-default.conf
-COPY docker/entrypoint.sh /entrypoint.sh
+# Install dependencies
+RUN composer install --no-scripts --no-autoloader
 
-WORKDIR /var/www
+# Run Composer scripts
+RUN composer dump-autoload --optimize
 
-RUN chmod +x /entrypoint.sh
+# Expose port 8000
+EXPOSE 8000
 
-CMD ["apache2-foreground"]
+# Run database setup and migrations
+# RUN php bin/console doctrine:database:create --if-not-exists --no-interaction
+# RUN php bin/console doctrine:migrations:migrate --no-interaction --all-or-nothing
 
-ENTRYPOINT ["/entrypoint.sh"]
+# Start the Symfony server
+CMD ["symfony", "serve", "--no-tls"]
