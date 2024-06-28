@@ -68,7 +68,7 @@ Before you begin, ensure you have the following installed on your system:
 8. **Start the Symfony Server:**
 
    ```bash
-   symfony serve
+   symfony serve:start
    ```
 
    This will start a local server. By default, the application will be accessible at `http://localhost:8000`.
